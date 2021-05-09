@@ -1,0 +1,45 @@
+import os
+import sys
+
+
+# ask user for the directory
+directory = input("Please enter the directory you would like to use: ")
+# print message if it doesn't exist
+if (os.path.exists(directory)):
+    print("\nDirectory found. Please continue. ")
+# print message if it doesn't exist
+# exit program
+else:
+    print("Directory not found.")
+    sys.exit()
+
+
+# ask user for the file name
+user_file = input("Please enter a filename to save the file: ")
+
+# join the directory and file together
+# file will write to user's specified directory
+completeName = os.path.join(directory, user_file)
+
+# function
+# get all user info
+# separate by comma
+# write to file
+# read to user for validation
+def get_user_info():
+    print("\nPlease enter your details below.")
+    name = input("Name: ")
+    address = input("Address: ")
+    phone_number = input("Phone Number: ")
+    full_info = f"{name}, {address}, {phone_number}"
+
+    with open(completeName, 'w') as file_object:
+        file_object.write(full_info.title())
+
+    print(f"\nYour file can be found at: {completeName}")
+    with open(completeName) as file_object:
+        contents = file_object.read()
+    print(f"The contents of this file are below:\n{contents}")
+
+
+get_user_info()
